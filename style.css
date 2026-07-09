@@ -1,0 +1,133 @@
+:root {
+  --paper: #fcfcfc;
+  --ink: #191919;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+.landing {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  justify-items: center;
+  gap: clamp(1.15rem, 2.5vw, 1.7rem);
+  padding: 3rem 1.5rem;
+}
+
+.wordmark {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(2.35rem, 5vw, 3.35rem);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: 0.18em;
+  text-indent: 0.18em;
+}
+
+.status {
+  position: relative;
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(0.68rem, 1.2vw, 0.78rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.28em;
+  text-transform: none;
+}
+
+.status::before,
+.status::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  color: var(--ink);
+  opacity: 0;
+}
+
+.status::before {
+  transform: translate3d(0, 0, 0);
+  animation: quiet-glitch-a 6.8s infinite;
+}
+
+.status::after {
+  transform: translate3d(0, 0, 0);
+  animation: quiet-glitch-b 6.8s infinite;
+}
+
+@keyframes quiet-glitch-a {
+  0%, 74%, 79%, 100% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+    clip-path: inset(0 0 0 0);
+  }
+  75% {
+    opacity: 0.045;
+    transform: translate3d(-0.035em, 0, 0);
+    clip-path: inset(12% 0 70% 0);
+  }
+  76% {
+    opacity: 0.035;
+    transform: translate3d(0.028em, 0, 0);
+    clip-path: inset(58% 0 25% 0);
+  }
+  77% {
+    opacity: 0.02;
+    transform: translate3d(-0.018em, 0, 0);
+    clip-path: inset(35% 0 48% 0);
+  }
+}
+
+@keyframes quiet-glitch-b {
+  0%, 73.5%, 78.5%, 100% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+    text-shadow: none;
+  }
+  74.5% {
+    opacity: 0.03;
+    transform: translate3d(0.025em, 0.01em, 0);
+    text-shadow: -0.025em 0 0 rgba(25, 25, 25, 0.35);
+  }
+  76.5% {
+    opacity: 0.05;
+    transform: translate3d(-0.02em, -0.01em, 0);
+    text-shadow: 0.02em 0 0 rgba(25, 25, 25, 0.25);
+  }
+  78% {
+    opacity: 0.015;
+    transform: translate3d(0.01em, 0, 0);
+    text-shadow: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .wordmark {
+    font-size: clamp(1.9rem, 12vw, 2.45rem);
+    letter-spacing: 0.15em;
+    text-indent: 0.15em;
+  }
+
+  .status {
+    font-size: 0.66rem;
+    letter-spacing: 0.24em;
+  }
+}
