@@ -213,3 +213,10 @@ body {
     letter-spacing: 0.24em;
   }
 }
+.logo {
+  display: block;
+  width: clamp(130px, 12vw, 190px);
+  height: auto;
+  margin: 0 auto;
+  object-fit: contain;
+}
