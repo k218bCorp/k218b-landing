@@ -1,6 +1,7 @@
 :root {
   --paper: #fcfcfc;
   --ink: #191919;
+  --marquee-height: 28px;
 }
 
 * {
@@ -29,8 +30,55 @@ body {
   align-content: center;
   justify-items: center;
   gap: clamp(1.15rem, 2.5vw, 1.7rem);
-  padding: 3rem 1.5rem;
+  padding: calc(3rem + var(--marquee-height)) 1.5rem;
 }
+
+.marquee {
+  position: fixed;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: var(--marquee-height);
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 0.62rem;
+  font-weight: 400;
+  line-height: var(--marquee-height);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.marquee--top {
+  top: 0;
+}
+
+.marquee--bottom {
+  bottom: 0;
+}
+
+.marquee__track {
+  display: flex;
+  width: max-content;
+  min-width: 200%;
+  will-change: transform;
+}
+
+.marquee__track span {
+  flex: 0 0 auto;
+  padding-right: 3rem;
+}
+
+.marquee--top .marquee__track {
+  animation: marquee-left 46s linear infinite;
+}
+
+.marquee--bottom .marquee__track {
+  animation: marquee-right 52s linear infinite;
+  transform: translate3d(-50%, 0, 0);
+}
+
 
 .wordmark {
   margin: 0;
@@ -71,6 +119,24 @@ body {
 .status::after {
   transform: translate3d(0, 0, 0);
   animation: quiet-glitch-b 6.8s infinite;
+}
+
+@keyframes marquee-left {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 @keyframes quiet-glitch-a {
@@ -120,6 +186,22 @@ body {
 }
 
 @media (max-width: 640px) {
+  :root {
+    --marquee-height: 24px;
+  }
+
+  .landing {
+    padding: calc(2.75rem + var(--marquee-height)) 1.25rem;
+  }
+
+  .marquee {
+    font-size: 0.55rem;
+  }
+
+  .marquee__track span {
+    padding-right: 2.25rem;
+  }
+
   .wordmark {
     font-size: clamp(1.9rem, 12vw, 2.45rem);
     letter-spacing: 0.15em;
