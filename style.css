@@ -12,14 +12,29 @@ body {
   min-height: 100vh;
   overflow: hidden;
   background-color: #fcfcfc;
-  background-image: url("background.jpg");
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
   color: #5f5f5f;
   font-family: Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: geometricPrecision;
+}
+
+.background-depth {
+  position: fixed;
+  inset: -3vh -3vw;
+  background-image: url("background.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  z-index: 0;
+  will-change: transform;
+  transform: translate3d(0, 0, 0) scale(1.03);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .background-depth {
+    will-change: auto;
+    transform: translate3d(0, 0, 0) scale(1.03);
+  }
 }
 
 .center-ticker {
