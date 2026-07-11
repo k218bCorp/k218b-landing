@@ -1,7 +1,7 @@
 :root {
   --paper: #fcfcfc;
   --ink: #191919;
-  --marquee-height: 28px;
+  --marquee-height: 18px;
 }
 
 * {
@@ -40,12 +40,13 @@ body {
   width: 100%;
   height: var(--marquee-height);
   overflow: hidden;
-  background: var(--ink);
-  color: var(--paper);
-  font-size: 0.62rem;
+  background: #282828;
+  color: #bdbdbd;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 8px;
   font-weight: 400;
   line-height: var(--marquee-height);
-  letter-spacing: 0.18em;
+  letter-spacing: 0.34em;
   text-transform: uppercase;
   white-space: nowrap;
 }
@@ -71,11 +72,11 @@ body {
 }
 
 .marquee--top .marquee__track {
-  animation: marquee-left 46s linear infinite;
+  animation: marquee-left 58s linear infinite;
 }
 
 .marquee--bottom .marquee__track {
-  animation: marquee-right 52s linear infinite;
+  animation: marquee-right 62s linear infinite;
   transform: translate3d(-50%, 0, 0);
 }
 
@@ -185,9 +186,36 @@ body {
   }
 }
 
+
+.Logo,
+.logo {
+  display: block;
+  width: clamp(130px, 12vw, 190px);
+  height: auto;
+  margin: 0 auto;
+  object-fit: contain;
+  animation: logo-drift 16s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes logo-drift {
+  0% {
+    transform: translateX(0);
+  }
+  45% {
+    transform: translateX(0);
+  }
+  80% {
+    transform: translateX(75vw);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
 @media (max-width: 640px) {
   :root {
-    --marquee-height: 24px;
+    --marquee-height: 16px;
   }
 
   .landing {
@@ -195,7 +223,7 @@ body {
   }
 
   .marquee {
-    font-size: 0.55rem;
+    font-size: 8px;
   }
 
   .marquee__track span {
@@ -212,11 +240,24 @@ body {
     font-size: 0.66rem;
     letter-spacing: 0.24em;
   }
+
+  .Logo,
+  .logo {
+    animation-name: logo-drift-mobile;
+  }
 }
-.logo {
-  display: block;
-  width: clamp(130px, 12vw, 190px);
-  height: auto;
-  margin: 0 auto;
-  object-fit: contain;
+
+@keyframes logo-drift-mobile {
+  0% {
+    transform: translateX(0);
+  }
+  45% {
+    transform: translateX(0);
+  }
+  80% {
+    transform: translateX(48vw);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
